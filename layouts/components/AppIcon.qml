@@ -1,0 +1,21 @@
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+
+Button {
+    id: appicon
+    width: window.height
+    height: window.height
+
+    background: Rectangle {
+        color: "#00000000"
+    }
+    
+    property string iconSource: "../assets/icons/unknown.svg"
+
+    Image {
+        anchors.centerIn: parent
+        width: parent.width - 20
+        height: parent.height - 20
+        source: "../" + appicon.iconSource
+    }
+}
