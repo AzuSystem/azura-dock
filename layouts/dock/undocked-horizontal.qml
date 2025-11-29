@@ -1,23 +1,33 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtGraphicalEffects 1.12
-import "components"
+import QtQuick.Window 2.15
+import "../components"
 
-ApplicationWindow {
+Window {
     id: window
     visible: true
-    width: 1280
+    width: screen.width * ( 80/100 )
     height: 50
     title: "AzuOS Dock"
+    flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
+    color: "transparent"
+    x: ( screen.width / 2 ) - ( window.width / 2 )
+    y: screen.height - window.height - 15
 
     Rectangle {
+        id: dock
         width: parent.width
+        // width: childrenRect.width + 12
         height: parent.height
-        color: "#1E1122"
+        color: "#801E1122"
+        border.width: 1
+        border.color: "#20ffffff"
+        radius: 12
 
-        Row {
+        Item {
             width: window.width
-            spacing: 12
+            anchors.fill: parent
             Row {
                 Button { // start button
                     width: window.height
@@ -31,7 +41,7 @@ ApplicationWindow {
                         anchors.centerIn: parent
                         width: parent.width - 20
                         height: parent.height - 20
-                        source: "../assets/logo.png"
+                        source: "../../assets/logo.png"
                     }
                 }
 
@@ -42,16 +52,20 @@ ApplicationWindow {
                 AppIcon {
                     iconSource: "../assets/icons/dolphin.svg"
                 }
-
             }
-                DividerV { // more like MalodyV :speaking_head:
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-
             Row {
+                x: parent.width - width - 12
                 spacing: 10
                 anchors.verticalCenter: parent.verticalCenter
-                // anchors.right: parent.right
+                anchors.right: dock.right
+
+                Item {
+                    // why must i suffer with my buns code, making hacky solutions....
+                    DividerV {
+                        x: -12
+                        y: -5
+                    }
+                }
 
                 Button {
                     width: 20
@@ -65,7 +79,7 @@ ApplicationWindow {
                         anchors.centerIn: parent
                         width: parent.width + 2
                         height: parent.height + 2
-                        source: "../assets/icons/arrowup.svg"
+                        source: "../../assets/icons/arrowup.svg"
                     }
                 }
                 Button {
@@ -80,7 +94,7 @@ ApplicationWindow {
                         anchors.centerIn: parent
                         width: parent.width
                         height: parent.height
-                        source: "../assets/icons/wifi/full.svg"
+                        source: "../../assets/icons/wifi/full.svg"
                     }
                 }
                 Button {
@@ -95,7 +109,7 @@ ApplicationWindow {
                         anchors.centerIn: parent
                         width: parent.width
                         height: parent.height
-                        source: "../assets/icons/config.svg"
+                        source: "../../assets/icons/config.svg"
                     }
                 }
 
@@ -108,8 +122,10 @@ ApplicationWindow {
                     }
 
                     Text {
+                        id: time
                         anchors.centerIn: parent
                         text: "25:00"
+                        // text: time.thetime
                         color: "#ffffff"
                         font.weight: Font.Medium
                     }
@@ -127,10 +143,12 @@ ApplicationWindow {
                         anchors.centerIn: parent
                         width: parent.width
                         height: parent.height
-                        source: "../assets/icons/config.svg"
+                        source: "../../assets/icons/config.svg"
                     }
                 }
             }
         }
     }
+
+    // width: dock.width
 }
