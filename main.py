@@ -31,6 +31,7 @@ engine.quit.connect(app.quit)
 
 
 engine.load('layouts/dock/undocked-horizontal.qml')
+# engine.load('layouts/startmenu/window.qml')
 
 root = engine.rootObjects()[0]
 

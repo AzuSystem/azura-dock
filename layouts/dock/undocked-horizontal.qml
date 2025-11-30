@@ -9,7 +9,7 @@ Window {
     visible: true
     width: screen.width * ( 80/100 )
     height: 50
-    title: "AzuOS Dock"
+    title: "Azura Dock"
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
     color: "transparent"
     x: ( screen.width / 2 ) - ( window.width / 2 )
@@ -18,7 +18,7 @@ Window {
     Rectangle {
         id: dock
         width: parent.width
-        // width: childrenRect.width + 12
+        // width: contents.width + 12
         height: parent.height
         color: "#801E1122"
         border.width: 1
@@ -35,6 +35,24 @@ Window {
 
                     background: Rectangle {
                         color: "#00000000"
+                        MouseArea {
+                            width: window.height
+                            height: window.height
+                            hoverEnabled: true
+                            onEntered: parent.color = "#07ffffff"
+                            onExited: parent.color = "#00000000"
+                            onPressed: {
+                                if ( startMenu.active == false ) {
+                                    startMenu.active = true;
+                                    startMenu.item.x = window.x
+                                    // startMenu.item.x = ( screen.width / 2 ) - ( startMenu.item.width / 2 )
+                                    startMenu.item.y = window.y - startMenu.item.height - 15
+                                } else {                            
+                                    startMenu.active = false;                      
+                                }
+                            }  
+                        }
+                        radius: 12
                     }
 
                     Image {
@@ -54,8 +72,8 @@ Window {
                 }
             }
             Row {
-                x: parent.width - width - 12
-                spacing: 10
+                x: parent.width - width - 14
+                spacing: 12
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: dock.right
 
@@ -80,6 +98,22 @@ Window {
                         width: parent.width + 2
                         height: parent.height + 2
                         source: "../../assets/icons/arrowup.svg"
+                        layer.effect: DropShadow {
+                            anchors.centerIn: parent
+                            color: "#60ffffff"
+                            radius: 24
+                            spread: 0.0
+                            samples: 64
+                            horizontalOffset: 0
+                            verticalOffset: 0
+                        }
+                        MouseArea {
+                            width: window.height
+                            height: window.height
+                            hoverEnabled: true
+                            onEntered: parent.layer.enabled = true
+                            onExited: parent.layer.enabled = false
+                        }
                     }
                 }
                 Button {
@@ -94,9 +128,57 @@ Window {
                         anchors.centerIn: parent
                         width: parent.width
                         height: parent.height
-                        source: "../../assets/icons/wifi/full.svg"
+                        source: "../../assets/icons/volume/high.svg"
+                        layer.effect: DropShadow {
+                            anchors.centerIn: parent
+                            color: "#60ffffff"
+                            radius: 24
+                            spread: 0.0
+                            samples: 64
+                            horizontalOffset: 0
+                            verticalOffset: 0
+                        }
+                        MouseArea {
+                            width: window.height
+                            height: window.height
+                            hoverEnabled: true
+                            onEntered: parent.layer.enabled = true
+                            onExited: parent.layer.enabled = false
+                        }
                     }
                 }
+                Button {
+                    width: 20
+                    height: 20
+
+                    background: Rectangle {
+                        color: "#00000000"
+                    }
+
+                    Image {
+                        anchors.centerIn: parent
+                        width: parent.width
+                        height: parent.height
+                        source: "../../assets/icons/wifi/four.svg"
+                        layer.effect: DropShadow {
+                            anchors.centerIn: parent
+                            color: "#60ffffff"
+                            radius: 24
+                            spread: 0.0
+                            samples: 64
+                            horizontalOffset: 0
+                            verticalOffset: 0
+                        }
+                        MouseArea {
+                            width: window.height
+                            height: window.height
+                            hoverEnabled: true
+                            onEntered: parent.layer.enabled = true
+                            onExited: parent.layer.enabled = false
+                        }
+                    }
+                }
+
                 Button {
                     width: 20
                     height: 20
@@ -110,6 +192,22 @@ Window {
                         width: parent.width
                         height: parent.height
                         source: "../../assets/icons/config.svg"
+                        layer.effect: DropShadow {
+                            anchors.centerIn: parent
+                            color: "#60ffffff"
+                            radius: 24
+                            spread: 0.0
+                            samples: 64
+                            horizontalOffset: 0
+                            verticalOffset: 0
+                        }
+                        MouseArea {
+                            width: parent.width
+                            height: parent.height
+                            hoverEnabled: true
+                            onEntered: parent.layer.enabled = true
+                            onExited: parent.layer.enabled = false
+                        }
                     }
                 }
 
@@ -128,6 +226,22 @@ Window {
                         // text: time.thetime
                         color: "#ffffff"
                         font.weight: Font.Medium
+                        layer.effect: DropShadow {
+                            anchors.centerIn: parent
+                            color: "#60ffffff"
+                            radius: 24
+                            spread: 0.0
+                            samples: 64
+                            horizontalOffset: 0
+                            verticalOffset: 0
+                        }
+                        MouseArea {
+                            width: window.height
+                            height: window.height
+                            hoverEnabled: true
+                            onEntered: parent.layer.enabled = true
+                            onExited: parent.layer.enabled = false
+                        }
                     }
                 }
 
@@ -143,11 +257,33 @@ Window {
                         anchors.centerIn: parent
                         width: parent.width
                         height: parent.height
-                        source: "../../assets/icons/config.svg"
+                        source: "../../assets/icons/notification/read.svg"
+                        layer.effect: DropShadow {
+                            anchors.centerIn: parent
+                            color: "#60ffffff"
+                            radius: 24
+                            spread: 0.0
+                            samples: 64
+                            horizontalOffset: 0
+                            verticalOffset: 0
+                        }
+                        MouseArea {
+                            width: window.height
+                            height: window.height
+                            hoverEnabled: true
+                            onEntered: parent.layer.enabled = true
+                            onExited: parent.layer.enabled = false
+                        }
                     }
                 }
             }
         }
+    }
+
+    Loader {
+        id: startMenu
+        source: "../startmenu/window.qml"
+        active: false
     }
 
     // width: dock.width

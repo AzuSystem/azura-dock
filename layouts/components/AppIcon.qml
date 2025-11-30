@@ -8,6 +8,13 @@ Button {
 
     background: Rectangle {
         color: "#00000000"
+        MouseArea {
+            width: window.height
+            height: window.height
+            hoverEnabled: true
+            onEntered: parent.color = "#07ffffff"
+            onExited: parent.color = "#00000000"
+        }
     }
     
     property string iconSource: "../assets/icons/unknown.svg"
