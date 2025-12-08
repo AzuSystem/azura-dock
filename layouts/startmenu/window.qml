@@ -15,6 +15,7 @@ Window {
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
 
     Rectangle {
+        id: startmenu
         color: "#801E1122"
         width: parent.width
         height: parent.height
@@ -159,6 +160,50 @@ Window {
                     height: 16
                     anchors.centerIn: parent
                 }
+            }
+        }
+
+        Rectangle {
+            width: 335
+            height: 50
+            color: "#0Affffff"
+            x: ( parent.width / 2 ) - ( width / 2 )
+            y: height + 12
+            radius: 50
+
+            Column {}
+        }
+        Rectangle {
+            // width: childrenRect.width
+            width: parent.width
+            height: parent.height - 50 - 50 - 12
+            y: 50 + 50 + 12 + 10
+            // anchors.horizontalCenter: parent.horizontalCenter
+            color: "#00ffffff"
+
+            ListModel {
+                id: pinned
+                ListElement {}
+                ListElement {}
+                ListElement {}
+                ListElement {}
+                ListElement {}
+            }
+
+            GridView {
+            // Row { // testing purposes
+                // width: childrenRect.width
+                width: ( startmenu.width / 5 - 10 ) * 5
+                anchors.fill: parent
+                // height: parent.height
+                // spacing: 7
+                cellWidth: startmenu.width / 5 - 10
+                cellHeight: startmenu.width / 5 - 10
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                model: pinned
+
+                delegate: GridIcon {}
             }
         }
     }

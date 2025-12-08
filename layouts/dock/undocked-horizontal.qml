@@ -223,7 +223,7 @@ Window {
                         id: time
                         anchors.centerIn: parent
                         text: "25:00"
-                        // text: time.thetime
+                        // text: systemTime.fetch_time()
                         color: "#ffffff"
                         font.weight: Font.Medium
                         layer.effect: DropShadow {

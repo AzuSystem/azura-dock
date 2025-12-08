@@ -37,7 +37,8 @@ root = engine.rootObjects()[0]
 
 # time shenanigens
 time = thetime.Time()
-engine.rootContext().setContextProperty("time", time)
+# print(time.fetch_time())
+engine.rootContext().setContextProperty("systemTime", time)
 
 # pinned apps!
 # appIcon = engine.loadComponent('layouts/components/AppIcon.qml')
