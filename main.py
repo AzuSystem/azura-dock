@@ -22,7 +22,7 @@ if not os.path.exists(taskbarContents):
 
 if not os.path.exists(startMenuContents):
     print('"~/.config/AzuOS/StartMenu/PinnedApps" Created')
-    os.makedirs(pinnedAppsDirectory, exist_ok=True)
+    os.makedirs(startMenuContents, exist_ok=True)
 
 app = QGuiApplication(sys.argv)
 
@@ -43,14 +43,14 @@ engine.rootContext().setContextProperty("systemTime", time)
 # pinned apps!
 # appIcon = engine.loadComponent('layouts/components/AppIcon.qml')
 # this here reads a json and creates the icons and such
-try:
-	with open(taskbarContents + '/pinned.json', 'r') as pinned:
-		data = json.load(pinned)
-		# print(json.dumps(data, indent=4))
-		for pos, name in data.items():
-			print()
-except json.JSONDecodeError:
-	print("Failed to load pinned apps: Could not parse properly")
+# try:
+# 	with open(taskbarContents + '/pinned.json', 'r') as pinned:
+# 		data = json.load(pinned)
+# 		# print(json.dumps(data, indent=4))
+# 		for pos, name in data.items():
+# 			print()
+# except json.JSONDecodeError:
+# 	print("Failed to load pinned apps: Could not parse properly")
 
 
 sys.exit(app.exec())
