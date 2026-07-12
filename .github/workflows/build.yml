@@ -1,0 +1,32 @@
+name: Compile Linux Binary
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Build Environment
+      run: |
+        sudo apt update
+        sudo apt install -y qt6-base-dev qt6-declarative-dev
+        
+    - name: Build
+      run: cargo build --verbose --release
+
+    - name: Upload artifact
+      uses: actions/download-artifact@v3.1.0
+      with:
+        name: azura-dock
+        path: target/release/azura-dock
