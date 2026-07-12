@@ -1,0 +1,10 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file>layouts/components/AppIcon.qml</file>
+        <file>layouts/components/DividerV.qml</file>
+        <file>layouts/dock/undocked-horizontal.qml</file>
+        <file>layouts/startmenu/GridIcon.qml</file>
+        <file>layouts/startmenu/window.qml</file>
+    </qresource>
+</RCC>

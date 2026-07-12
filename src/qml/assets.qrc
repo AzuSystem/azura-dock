@@ -1,0 +1,52 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file>assets/icons/account.svg</file>
+        <file>assets/icons/apps.svg</file>
+        <file>assets/icons/arrowup.svg</file>
+        <file>assets/icons/bottom-panel-open.svg</file>
+        <file>assets/icons/clock.svg</file>
+        <file>assets/icons/close.svg</file>
+        <file>assets/icons/code.svg</file>
+        <file>assets/icons/computer.svg</file>
+        <file>assets/icons/config.svg</file>
+        <file>assets/icons/crescent moon.svg</file>
+        <file>assets/icons/dolphin.svg</file>
+        <file>assets/icons/download.svg</file>
+        <file>assets/icons/exclamation.svg</file>
+        <file>assets/icons/folder.svg</file>
+        <file>assets/icons/folderopen.svg</file>
+        <file>assets/icons/gridview.svg</file>
+        <file>assets/icons/harddrive.svg</file>
+        <file>assets/icons/listview.svg</file>
+        <file>assets/icons/nopin.svg</file>
+        <file>assets/icons/pin.svg</file>
+        <file>assets/icons/power.svg</file>
+        <file>assets/icons/refresh.svg</file>
+        <file>assets/icons/search.svg</file>
+        <file>assets/icons/settings.svg</file>
+        <file>assets/icons/unknown.svg</file>
+        <file>assets/icons/usb.svg</file>
+        <file>assets/icons/wavingHand.svg</file>
+        <file>assets/logo.svg</file>
+        <file>assets/logo.png</file>
+        <file>assets/icons/irrelevant/arrowup.svg</file>
+        <file>assets/icons/irrelevant/internet.svg</file>
+        <file>assets/icons/irrelevant/terminal.svg</file>
+        <file>assets/icons/irrelevant/wifi off.svg</file>
+        <file>assets/icons/irrelevant/wifi.svg</file>
+        <file>assets/icons/irrelevant/window.svg</file>
+        <file>assets/icons/irrelevant/wrench.svg</file>
+        <file>assets/icons/notification/read.svg</file>
+        <file>assets/icons/notification/unread.svg</file>
+        <file>assets/icons/volume/high.svg</file>
+        <file>assets/icons/volume/low.svg</file>
+        <file>assets/icons/volume/mute.svg</file>
+        <file>assets/icons/volume/off.svg</file>
+        <file>assets/icons/wifi/four.svg</file>
+        <file>assets/icons/wifi/three.svg</file>
+        <file>assets/icons/wifi/two.svg</file>
+        <file>assets/icons/wifi/one.svg</file>
+        <file>assets/icons/wifi/zero.svg</file>
+    </qresource>
+</RCC>
