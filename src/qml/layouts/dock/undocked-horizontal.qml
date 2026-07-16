@@ -3,7 +3,7 @@ import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 import QtQuick.Window
 import "../components"
-
+    
 Window {
     id: window
     visible: true
@@ -14,6 +14,15 @@ Window {
     color: "transparent"
     x: ( screen.width / 2 ) - ( window.width / 2 )
     y: screen.height - window.height - 15
+
+    property date currentTime: new Date()
+
+    Timer {
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: currentTime = new Date()
+    }
 
     Rectangle {
         id: dock
@@ -223,8 +232,8 @@ Window {
                     Text {
                         id: time
                         anchors.centerIn: parent
-                        text: "25:00"
-                        // text: systemTime.fetch_time()
+                        // text: "25:00"
+                        text: Qt.formatTime(currentTime, "hh:mm")
                         color: "#ffffff"
                         font.weight: Font.Medium
                         layer.effect: DropShadow {
