@@ -1,7 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-import QtQuick.Window 2.15
+import QtQuick.Window
 import "../components"
 
 Window {
@@ -41,18 +41,19 @@ Window {
                             hoverEnabled: true
                             onEntered: parent.color = "#07ffffff"
                             onExited: parent.color = "#00000000"
-                            onPressed: {
-                                if ( startMenu.active == false ) {
-                                    startMenu.active = true;
-                                    startMenu.item.x = window.x
-                                    // startMenu.item.x = ( screen.width / 2 ) - ( startMenu.item.width / 2 )
-                                    startMenu.item.y = window.y - startMenu.item.height - 15
-                                } else {                            
-                                    startMenu.active = false;                      
-                                }
-                            }  
                         }
                         radius: 12
+                    }
+
+                    onClicked: {
+                        if ( startMenu.active == false ) {
+                            startMenu.active = true;
+                            startMenu.item.x = window.x
+                            // startMenu.item.x = ( screen.width / 2 ) - ( startMenu.item.width / 2 )
+                            startMenu.item.y = window.y - startMenu.item.height - 15
+                        } else {                            
+                            startMenu.active = false;                      
+                        }
                     }
 
                     Image {
