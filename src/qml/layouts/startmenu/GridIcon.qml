@@ -4,6 +4,7 @@ import QtQuick.Controls
 Button {
     width: startmenu.width / 5 - 10
     height: startmenu.width / 5 - 10
+    property int animDelay: 0
 
     background: Rectangle {
         color: "#00ffffff"
@@ -29,6 +30,23 @@ Button {
             source: "../../assets/icons/dolphin.svg"
             width: 50
             height: 50
+            scale: 0
+
+
+            Behavior on scale {
+                SequentialAnimation {
+                    PauseAnimation {
+                        duration: animDelay
+                    }  
+
+                    NumberAnimation {
+                        duration: 500
+                        easing: Easing.OutCirc
+                    } 
+                }
+
+            }
+            Component.onCompleted: { scale = 1 }
         }
 
         Text {

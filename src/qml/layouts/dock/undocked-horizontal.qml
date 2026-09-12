@@ -13,15 +13,44 @@ Window {
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
     color: "transparent"
     x: ( screen.width / 2 ) - ( window.width / 2 )
-    y: screen.height - window.height - 15
+    y: autoHidden ? screen.height + 2 : screen.height - window.height - 15
+    opacity: autoHidden ? 0 : 1
+
 
     property date currentTime: new Date()
+    property bool allowAutoHide: false
+    property bool autoHidden: false // the visibility of the dock itself
+    property bool modalOpen: false
+
+    Behavior on y {
+        NumberAnimation {
+            duration: 650
+            easing.type: Easing.InOutQuart
+        }
+    }
+
+    Behavior on opacity {
+        NumberAnimation {
+            duration: 450
+            easing.type: Easing.InQuart
+        }
+
+    }
 
     Timer {
         interval: 1000
         running: true
         repeat: true
         onTriggered: currentTime = new Date()
+    }
+
+    Timer {
+        id: autoHide
+        interval: 1500
+        running: allowAutoHide
+        repeat: false
+
+        onTriggered: { if (!autoHideMouseArea.containsMouse && !modalOpen) { autoHidden = true } }
     }
 
     Rectangle {
@@ -54,16 +83,21 @@ Window {
                         radius: 12
                     }
 
-                    onClicked: {
-                        if ( startMenu.active == false ) {
-                            startMenu.active = true;
-                            startMenu.item.x = window.x
-                            // startMenu.item.x = ( screen.width / 2 ) - ( startMenu.item.width / 2 )
-                            startMenu.item.y = window.y - startMenu.item.height - 15
-                        } else {                            
-                            startMenu.active = false;                      
-                        }
+                    
+                    NumberAnimation { 
+                        id: popupAnim;
+                        property: "y";
+                        duration: 500; 
+                        easing.type: Easing.OutQuart 
                     }
+
+
+                    onClicked: {
+                        modalOpen = !modalOpen
+                        startMenu.active = !startMenu.active;
+                    }
+
+
 
                     Image {
                         anchors.centerIn: parent
@@ -290,10 +324,34 @@ Window {
         }
     }
 
+    MouseArea {
+        width: parent.width
+        height: parent.height
+        hoverEnabled: true
+        acceptedButtons: Qt.NoButton
+        id: autoHideMouseArea
+        enabled: allowAutoHide
+
+        onEntered: { autoHidden = false ; autoHide.stop() }
+        onExited: { autoHide.start() }
+    }
+
     Loader {
         id: startMenu
         source: "../startmenu/window.qml"
         active: false
+        asynchronous: false // Force synchronous loading so item properties exist immediately
+
+        onLoaded: {
+            // item.x = window.x;
+            // startMenu.item.x = ( screen.width / 2 ) - ( startMenu.item.width / 2 )
+
+            // item.y = window.y - item.height;
+
+            popupAnim.target = item;
+            popupAnim.to = window.y - item.height - 15;
+            popupAnim.start();
+        }
     }
 
     // width: dock.width

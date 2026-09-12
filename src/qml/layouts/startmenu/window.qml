@@ -5,8 +5,8 @@ import QtQuick.Window
 import "../components"
 
 Window {
-    // x: 0
-    // y: 0
+    x: window.x
+    y: window.y - item.height
     width: 550
     height: 570
     visible: true
@@ -416,7 +416,9 @@ Window {
 
                 model: pinned
 
-                delegate: GridIcon {}
+                delegate: GridIcon {
+                    animDelay: index * 5
+                }
 
                 layer.enabled: true
                 layer.effect: OpacityMask {
