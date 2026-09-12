@@ -18,7 +18,7 @@ Window {
 
 
     property date currentTime: new Date()
-    property bool allowAutoHide: false
+    property bool allowAutoHide: true
     property bool autoHidden: false // the visibility of the dock itself
     property bool modalOpen: false
 
