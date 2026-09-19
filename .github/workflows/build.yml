@@ -13,14 +13,17 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    container:
+      image: debian:trixie
+      options: --privileged
 
     steps:
     - uses: actions/checkout@v4
 
     - name: Setup Build Environment
       run: |
-        sudo apt update
-        sudo apt install -y qt6-base-dev qt6-declarative-dev
+        apt update
+        apt install -y qt6-base-dev qt6-declarative-dev
         
     - name: Build
       run: cargo build --verbose --release
