@@ -67,6 +67,7 @@ Window {
             width: window.width
             anchors.fill: parent
             Row {
+
                 Button { // start button
                     width: window.height
                     height: window.height
@@ -111,18 +112,60 @@ Window {
                     anchors.verticalCenter: parent.verticalCenter
                 }
 
-                AppIcon {
-                    iconSource: "../assets/icons/dolphin.svg"
+                ListModel {
+                    id: pinnedDock
+                    ListElement {
+                        iconSrc: "../assets/icons/dolphin.svg"
+                    }
+
+                    ListElement {
+                        iconSrc: "../assets/icons/dolphin.svg"
+                    }
+
+                    ListElement {
+                        iconSrc: "../assets/icons/dolphin.svg"
+                    }
+
+                    ListElement {
+                        iconSrc: "../assets/icons/dolphin.svg"
+                    }
+
                 }
+
+                ListView {
+                    width: window.width - ( window.height - 1 ) - dockControls.width - 14 // done to excl. start button + divider.. wth is this code-
+                    height: window.height
+                    orientation: ListView.Horizontal
+                    model: pinnedDock
+                    spacing: 0
+                    clip: true
+
+                    // interactive: contentWidth > width // if the dock is full enough, then itll allow drag overshoot
+                    // boundsBehavior: Flickable.StopAtBounds
+
+                    ScrollBar.horizontal: ScrollBar {
+                        policy: ScrollBar.AsNeeded
+                    }
+
+                    delegate: AppIcon {
+                        iconSource: iconSrc
+                    }
+                }
+
             }
             Row {
+                id: dockControls
                 x: parent.width - width - 14
                 spacing: 12
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: dock.right
 
+                clip: false
+
                 Item {
                     // why must i suffer with my buns code, making hacky solutions....
+                    width: 1
+
                     DividerV {
                         x: -12
                         y: -5
@@ -324,16 +367,18 @@ Window {
         }
     }
 
-    MouseArea {
-        width: parent.width
-        height: parent.height
-        hoverEnabled: true
-        acceptedButtons: Qt.NoButton
+    HoverHandler {
+        // width: parent.width
+        // height: parent.height
+        // acceptedButtons: Qt.NoButton
         id: autoHideMouseArea
         enabled: allowAutoHide
+        blocking: false
 
-        onEntered: { autoHidden = false ; autoHide.stop() }
-        onExited: { autoHide.start() }
+        onHoveredChanged: {
+            if ( hovered ) { autoHidden = false ; autoHide.stop() } 
+            else { autoHide.start() }
+        }
     }
 
     Loader {

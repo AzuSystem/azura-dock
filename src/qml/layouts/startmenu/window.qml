@@ -15,6 +15,33 @@ Window {
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
 
     property int selectedCategoryX: 0
+    property int categoryCurrentIndex: 0
+
+    Item {
+        id: startMenuFunc
+
+        function switchCategory(index) { // 0 for pinned, 1 for all, 2 for recents
+            // if ( index == 0 ) {
+            //     selectedCategoryX = pinnedCategoryBtn
+            // }
+
+            switch (index) { // why am i being so concise with this-
+                case 0:
+                    selectedCategoryX = pinnedCategoryBtn.x; animGoLeft.start(); categoryCurrentIndex = index; break;
+                case 1:
+                    selectedCategoryX = allAppsCategoryBtn.x; 
+                    if ( categoryCurrentIndex < 1 ) { animGoRight.start(); } else
+                    if ( categoryCurrentIndex > 1 ) { animGoLeft.start(); };
+                    categoryCurrentIndex = index;
+                    break;
+                case 2:
+                    selectedCategoryX = recentsCategoryBtn.x; animGoRight.start(); categoryCurrentIndex = index; break;
+                default:
+                    selectedCategoryX = pinnedCategoryBtn.x; console.log("Azura Start Menu: Strange category given... Switched to pinned instead");
+                    animGoLeft.start(); categoryCurrentIndex = index; break;    
+            }
+        }
+    }
 
     Rectangle {
         id: startmenu
@@ -250,6 +277,8 @@ Window {
 
                     background: Rectangle { color: "#00ffffff" }
 
+                    id: pinnedCategoryBtn
+
                     Row {
                         anchors.centerIn: parent
                         spacing: 5
@@ -273,7 +302,7 @@ Window {
 
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: selectedCategoryX = parent.x
+                        onClicked: startMenuFunc.switchCategory(0);
                     }
                 }
                 Button {
@@ -281,6 +310,8 @@ Window {
                     height: parent.height - parent.bottomPadding * 2
 
                     background: Rectangle { color: "#00ffffff" }
+
+                    id: allAppsCategoryBtn
 
                     Row {
                         anchors.centerIn: parent
@@ -305,7 +336,7 @@ Window {
 
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: selectedCategoryX = parent.x
+                        onClicked: startMenuFunc.switchCategory(1);
                     }
                 }
                 Button {
@@ -313,6 +344,8 @@ Window {
                     height: parent.height - parent.bottomPadding * 2
 
                     background: Rectangle { color: "#00ffffff" }
+
+                    id: recentsCategoryBtn
 
                     Row {
                         anchors.centerIn: parent
@@ -337,7 +370,7 @@ Window {
 
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: selectedCategoryX = parent.x
+                        onClicked: startMenuFunc.switchCategory(2);
                     }
                 }
             }
@@ -405,7 +438,10 @@ Window {
             // Row { // testing purposes
                 // width: childrenRect.width
                 width: ( startmenu.width / 5 - 8 ) * 5
-                anchors.fill: parent
+                id: appList
+                // anchors.fill: parent
+                // width: childrenRect.width
+                height: parent.height
                 // height: parent.height
                 // spacing: 7
                 cellWidth: startmenu.width / 5 - 8
@@ -413,6 +449,57 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
                 clip: true
 
+                SequentialAnimation {
+                    id: animGoLeft
+
+                    NumberAnimation {
+                        target: appList
+                        property: "anchors.horizontalCenterOffset"
+                        to: -100
+                        duration: 200
+                        easing: Easing.InCirc
+                    }
+
+                    NumberAnimation {
+                        target: appList
+                        property: "anchors.horizontalCenterOffset"
+                        from: 100
+                        to: 0
+                        duration: 200
+                        easing: Easing.OutCirc
+                    }                    
+                }
+
+
+                SequentialAnimation {
+                    id: animGoRight
+
+                    NumberAnimation {
+                        target: appList
+                        property: "anchors.horizontalCenterOffset"
+                        to: 100
+                        duration: 200
+                        easing: Easing.InCirc
+                    }
+
+                    NumberAnimation {
+                        target: appList
+                        property: "anchors.horizontalCenterOffset"
+                        from: -100
+                        to: 0
+                        duration: 200
+                        easing: Easing.OutCirc
+                    }                    
+                }                
+
+                // Behavior on anchors.horizontalCenterOffset {
+                //     NumberAnimation {
+                //         duration: 200
+                //         easing: Easing.InCirc
+                //     }
+                // }
+
+                ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
 
                 model: pinned
 
