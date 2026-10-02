@@ -16,11 +16,13 @@ Window {
 
 	property int selectedCategoryX: 0
 	property int categoryCurrentIndex: 0
-	property string currentModelName: pinnedModel
+	property string currentModel: pinnedModel
 
 	property var pinnedModel: backend.getPinnedModel()
 	property var allAppsModel: backend.getAllAppsModel()
 	property var recentsModel: backend.getRecentsModel()	
+
+	property var mutableModel: 
 
 	Backend { id: backend }
 
@@ -53,21 +55,48 @@ Window {
 			switch (index) { // why am i being so concise with this-
 				case 0:
 					selectedCategoryX = pinnedCategoryBtn.x; animGoLeft.start();
-					categoryCurrentIndex = index; currentModelName = pinnedModel; break;
+					categoryCurrentIndex = index; mutableModel = pinnedModel; break;
 				case 1:
 					selectedCategoryX = allAppsCategoryBtn.x; 
 					if ( categoryCurrentIndex < 1 ) { animGoRight.start(); } else
 					if ( categoryCurrentIndex > 1 ) { animGoLeft.start(); };
 					categoryCurrentIndex = index;
-					currentModelName = allAppsModel;
+					mutableModel = allAppsModel;
 					break;
 				case 2:
 					selectedCategoryX = recentsCategoryBtn.x; animGoRight.start();
-					currentModelName = recentsModel; categoryCurrentIndex = index; break;
+					mutableModel = recentsModel; categoryCurrentIndex = index; break;
 				default:
 					selectedCategoryX = pinnedCategoryBtn.x; console.log("Azura Start Menu: Strange category given... Switched to pinned instead");
-					animGoLeft.start(); categoryCurrentIndex = index; currentModelName = pinnedModel; break;    
+					animGoLeft.start(); categoryCurrentIndex = index; mutableModel = pinnedModel; break;    
 			}
+		}
+
+		function searchApps(term) {
+			term = term.toLowerCase().trim() // outta sanitise it first
+
+			console.log(term)
+
+		    if ( term === "" ) {
+		        // mutableModel = JSON.parse(allAppsModel)
+				switch (categoryCurrentIndex) {
+					case 0: mutableModel = JSON.parse(pinnedModel); break;
+					case 1: mutableModel = JSON.parse(allAppsModel); break;
+					case 2: mutableModel = JSON.parse(recentsModel); break;
+					default: mutableModel = JSON.parse(pinnedModel); break;
+				}
+				appList.model = mutableModel;
+
+		        return
+		    }
+
+
+		    // current flaw, this doesnt consider the tags that applications set for themselves. this will be sorted.. soon
+			mutableModel = JSON.parse(allAppsModel).filter(function(appEntry) {
+			    return appEntry.name.toLowerCase().includes(term)
+			})
+
+			appList.model = mutableModel;
 		}
 	}
 
@@ -133,6 +162,7 @@ Window {
 				y: ( parent.height / 2 ) - ( height / 2 )
 				leftPadding: 35
 				placeholderText: "Search"
+				placeholderTextColor: "#aaffffff"
 
 				background: Rectangle {
 					color: "#0Fffffff"
@@ -140,6 +170,7 @@ Window {
 					border.width: 0.5
 					radius: 25
 				}
+
 				Image {
 					source: "../../assets/icons/search.svg"
 					width: 17
@@ -147,6 +178,8 @@ Window {
 					anchors.verticalCenter: parent.verticalCenter
 					x: 12
 				}
+
+				onTextChanged: { startMenuFunc.searchApps(text) }
 			}
 			// Rectangle {
 			//     // the search bar
@@ -458,7 +491,7 @@ Window {
 
 					ScriptAction {
 						script: {
-							appList.model = JSON.parse(currentModelName)
+							appList.model = JSON.parse(mutableModel)
 						}
 					}
 
@@ -486,7 +519,7 @@ Window {
 
 					ScriptAction {
 						script: {
-							appList.model = JSON.parse(currentModelName)
+							appList.model = JSON.parse(mutableModel)
 						}
 					}
 
@@ -522,6 +555,32 @@ Window {
 				layer.effect: OpacityMask {
 					maskSource: fadeMask
 				}
+			}
+
+			Menu {
+				id: appListContextMenu
+
+				popupType: Popup.Window
+
+		        MenuItem {
+		            text: "Pin"
+		            onTriggered: {
+		                console.log("Pin")
+		            }
+		        }
+
+		        MenuItem {
+		            text: "Open"
+		            onTriggered: {
+		                console.log("Open")
+		            }
+		        }
+
+		        MenuSeparator {}
+
+		        MenuItem {
+		            text: "Properties"
+		        }
 			}
 		}
 	}

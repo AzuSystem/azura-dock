@@ -62,6 +62,41 @@ Item {
 				"name": "Arcaea",
 				"icon": "../../assets/icons/dolphin.svg",
 				"file": ""
+			},
+			{
+				"name": "JA Sensei",
+				"icon": "../../assets/icons/dolphin.svg",
+				"file": ""
+			},
+			{
+				"name": "Takoboto Dictionary",
+				"icon": "../../assets/icons/dolphin.svg",
+				"file": ""
+			},
+			{
+				"name": "Jisho",
+				"icon": "../../assets/icons/dolphin.svg",
+				"file": ""
+			},
+			{
+				"name": "Anki",
+				"icon": "../../assets/icons/dolphin.svg",
+				"file": ""
+			},
+			{
+				"name": "yomu yomu",
+				"icon": "../../assets/icons/dolphin.svg",
+				"file": ""
+			},
+			{
+				"name": "NicoDouga",
+				"icon": "../../assets/icons/dolphin.svg",
+				"file": ""
+			},
+			{
+				"name": "Higurashi Again",
+				"icon": "../../assets/icons/dolphin.svg",
+				"file": ""
 			}
 
 		]'
