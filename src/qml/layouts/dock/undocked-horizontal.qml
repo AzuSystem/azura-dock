@@ -383,7 +383,7 @@ Window {
 
     Loader {
         id: startMenu
-        source: "../startmenu/window.qml"
+        source: "../StartMenu/StartMenu.qml"
         active: false
         asynchronous: false // Force synchronous loading so item properties exist immediately
 

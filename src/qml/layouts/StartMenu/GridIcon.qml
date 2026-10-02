@@ -5,6 +5,10 @@ Button {
     width: startmenu.width / 5 - 10
     height: startmenu.width / 5 - 10
     property int animDelay: 0
+    property string appName
+    property string iconPath
+
+    id: gridIconBtn
 
     background: Rectangle {
         color: "#00ffffff"
@@ -27,10 +31,12 @@ Button {
         anchors.centerIn: parent
         spacing: 7
         Image {
-            source: "../../assets/icons/dolphin.svg"
+            source: iconPath
             width: 50
             height: 50
             scale: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+
 
 
             Behavior on scale {
@@ -50,10 +56,14 @@ Button {
         }
 
         Text {
-            text: "Dolphin"
+            text: appName
             color: "#ffffff"
             font.pixelSize: 13
             font.weight: Font.Medium
+            horizontalAlignment: Text.AlignHCenter
+            width: gridIconBtn.width - 15
+            elide: Text.ElideRight
+
         }
     }
 }

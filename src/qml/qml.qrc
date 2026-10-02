@@ -5,6 +5,7 @@
         <file>layouts/components/DividerV.qml</file>
         <file>layouts/dock/undocked-horizontal.qml</file>
         <file>layouts/startmenu/GridIcon.qml</file>
-        <file>layouts/startmenu/window.qml</file>
+        <file>layouts/StartMenu/StartMenu.qml</file>
+        <file>layouts/StartMenu/Backend.qml</file>
     </qresource>
 </RCC>
