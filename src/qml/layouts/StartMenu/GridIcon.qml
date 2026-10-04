@@ -24,23 +24,60 @@ Button {
 
 		popupType: Popup.Window
 
-		width: 180
+		// width: 180
 
 		padding: 6
 
+		enter: Transition {
+			NumberAnimation {
+				property: "width"
+				from: 0
+				to: 180
+				duration: 250
+				easing.type: Easing.OutCubic
+			}		
+
+			NumberAnimation {
+				property: "height"
+				from: 0
+				to: height + ( padding * 2 ) + padding
+				duration: 200
+				easing.type: Easing.OutBack
+			}			
+
+			// NumberAnimation {
+			// 	property: "scale"
+			// 	from: 0.4
+			// 	to: 1
+			// 	duration: 3000
+			// 	easing.type: Easing.OutBack
+			// }			
+
+			NumberAnimation {
+				property: "opacity"
+				from: 0
+				to: 1
+				duration: 300
+			}			
+
+
+		}
+
+
 		background: Rectangle {
-			color: "#801E1122"
+			color: "#501E1122"
 			border.color: "#20ffffff"
 			border.width: 1
 			radius: 12        
 		}
 
 		delegate: MenuItem {
+			id: menuItem
+			// implicitWidth: 120
+			implicitHeight: 30
 
-			implicitHeight: 36
-
-			leftPadding: 12
-			rightPadding: 12
+			// leftPadding: 12
+			// rightPadding: 12
 
 			contentItem: Text {
 				text: parent.text
@@ -49,19 +86,19 @@ Button {
 			}
 
 			background: Rectangle {
-				radius: 7
-				color: parent.highlighted ? "0Affffff" : "#00ffffff"
+				radius: 6
+				color: parent.highlighted ? "#0Affffff" : "#00ffffff"
 			}
 		}
 
-		MenuItem {
+		Action {
 			text: "Pin"
 			onTriggered: {
 				console.log("Pin")
 			}
 		}
 
-		MenuItem {
+		Action {
 			text: "Open"
 			onTriggered: {
 				console.log("Open")
@@ -70,9 +107,11 @@ Button {
 
 		MenuSeparator {}
 
-		MenuItem {
+		Action {
 			text: "Properties"
 		}
+
+		// Text { text: appName }
 	}
 
 	background: Rectangle {

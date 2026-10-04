@@ -557,31 +557,7 @@ Window {
 				}
 			}
 
-			Menu {
-				id: appListContextMenu
 
-				popupType: Popup.Window
-
-		        MenuItem {
-		            text: "Pin"
-		            onTriggered: {
-		                console.log("Pin")
-		            }
-		        }
-
-		        MenuItem {
-		            text: "Open"
-		            onTriggered: {
-		                console.log("Open")
-		            }
-		        }
-
-		        MenuSeparator {}
-
-		        MenuItem {
-		            text: "Properties"
-		        }
-			}
 		}
 	}
 }
