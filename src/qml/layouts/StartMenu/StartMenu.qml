@@ -13,10 +13,11 @@ Window {
 	color: "transparent"
 	title: "Azura Start Menu"
 	flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
+	id: frontend
 
 	property int selectedCategoryX: 0
 	property int categoryCurrentIndex: 0
-	property string currentModel: pinnedModel
+	// property string currentModel: pinnedModel
 
 	property var pinnedModel: backend.getPinnedModel()
 	property var allAppsModel: backend.getAllAppsModel()
@@ -25,6 +26,22 @@ Window {
 	property var mutableModel: 
 
 	Backend { id: backend }
+
+	function refreshModels() {
+		pinnedModel = backend.getPinnedModel()
+		allAppsModel = backend.getAllAppsModel()
+		recentsModel = backend.getRecentsModel()
+
+		console.log(pinnedModel)
+
+		// switch (categoryCurrentIndex) {
+		// 	case 0: mutableModel = JSON.parse(pinnedModel); break;
+		// 	case 1: mutableModel = JSON.parse(allAppsModel); break;
+		// 	case 2: mutableModel = JSON.parse(recentsModel); break;
+		// 	default: mutableModel = JSON.parse(pinnedModel); break;
+		// }
+		// appList.model = mutableModel;
+	}
 
 
 	// ListModel {
@@ -77,8 +94,8 @@ Window {
 
 			console.log(term)
 
-		    if ( term === "" ) {
-		        // mutableModel = JSON.parse(allAppsModel)
+			if ( term === "" ) {
+				// mutableModel = JSON.parse(allAppsModel)
 				switch (categoryCurrentIndex) {
 					case 0: mutableModel = JSON.parse(pinnedModel); break;
 					case 1: mutableModel = JSON.parse(allAppsModel); break;
@@ -87,13 +104,13 @@ Window {
 				}
 				appList.model = mutableModel;
 
-		        return
-		    }
+				return
+			}
 
 
-		    // current flaw, this doesnt consider the tags that applications set for themselves. this will be sorted.. soon
+			// current flaw, this doesnt consider the tags that applications set for themselves. this will be sorted.. soon
 			mutableModel = JSON.parse(allAppsModel).filter(function(appEntry) {
-			    return appEntry.name.toLowerCase().includes(term)
+				return appEntry.name.toLowerCase().includes(term)
 			})
 
 			appList.model = mutableModel;

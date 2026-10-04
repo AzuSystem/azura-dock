@@ -141,6 +141,11 @@ Item {
 
 		]'
 
+	onPinnedModelChanged: {
+		console.log("changed: " + pinnedModel)
+		console.trace()
+	}
+
 	function getPinnedModel() {
 		return pinnedModel
 	}
@@ -151,6 +156,22 @@ Item {
 
 	function getRecentsModel() {
 		return recentsModel
+	}
+
+	function launchEntry(path) {
+		console.log("Laucnh Entry: " + path)
+	}
+
+	function pinLauncherEntry(json) {
+		console.log(json)
+
+		let pinnedJSON = JSON.parse(pinnedModel)
+		pinnedJSON.push(JSON.parse(json))
+
+		pinnedModel = JSON.stringify(pinnedJSON, null, 4);
+
+		// frontend.refreshModels()
+		// console.log(pinnedModel)		
 	}
 
 }

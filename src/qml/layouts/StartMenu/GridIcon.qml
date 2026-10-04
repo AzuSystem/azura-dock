@@ -8,8 +8,13 @@ Button {
 	property int animDelay: 0
 	property string appName
 	property string iconPath
+	property string filePath
 
 	id: gridIconBtn
+
+	Backend { id: backend }
+
+	onClicked: { backend.launchEntry(filePath) }
 
 	TapHandler {
 		acceptedButtons: Qt.RightButton
@@ -45,22 +50,12 @@ Button {
 				easing.type: Easing.OutBack
 			}			
 
-			// NumberAnimation {
-			// 	property: "scale"
-			// 	from: 0.4
-			// 	to: 1
-			// 	duration: 3000
-			// 	easing.type: Easing.OutBack
-			// }			
-
 			NumberAnimation {
 				property: "opacity"
 				from: 0
 				to: 1
 				duration: 300
 			}			
-
-
 		}
 
 
@@ -73,11 +68,7 @@ Button {
 
 		delegate: MenuItem {
 			id: menuItem
-			// implicitWidth: 120
 			implicitHeight: 30
-
-			// leftPadding: 12
-			// rightPadding: 12
 
 			contentItem: Text {
 				text: parent.text
@@ -92,16 +83,24 @@ Button {
 		}
 
 		Action {
-			text: "Pin"
+			text: "Pin to Launcher"
 			onTriggered: {
-				console.log("Pin")
+				backend.pinLauncherEntry('{"name": "' + appName + '", "icon": "' + iconPath + '", "file": "' + filePath + '"}')
+				frontend.refreshModels()
 			}
 		}
+
+		// Action {
+		// 	text: "Pin to Dock"
+		// 	onTriggered: {
+		// 		console.log("Pin")
+		// 	}
+		// }		
 
 		Action {
 			text: "Open"
 			onTriggered: {
-				console.log("Open")
+				backend.launchEntry(filePath)
 			}
 		}
 
