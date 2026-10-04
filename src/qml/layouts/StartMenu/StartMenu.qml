@@ -27,21 +27,21 @@ Window {
 
 	Backend { id: backend }
 
-	function refreshModels() {
-		pinnedModel = backend.getPinnedModel()
-		allAppsModel = backend.getAllAppsModel()
-		recentsModel = backend.getRecentsModel()
+	// function refreshModels() {
+	// 	pinnedModel = backend.getPinnedModel()
+	// 	allAppsModel = backend.getAllAppsModel()
+	// 	recentsModel = backend.getRecentsModel()
 
-		console.log(pinnedModel)
+	// 	console.log(pinnedModel)
 
-		// switch (categoryCurrentIndex) {
-		// 	case 0: mutableModel = JSON.parse(pinnedModel); break;
-		// 	case 1: mutableModel = JSON.parse(allAppsModel); break;
-		// 	case 2: mutableModel = JSON.parse(recentsModel); break;
-		// 	default: mutableModel = JSON.parse(pinnedModel); break;
-		// }
-		// appList.model = mutableModel;
-	}
+	// 	// switch (categoryCurrentIndex) {
+	// 	// 	case 0: mutableModel = JSON.parse(pinnedModel); break;
+	// 	// 	case 1: mutableModel = JSON.parse(allAppsModel); break;
+	// 	// 	case 2: mutableModel = JSON.parse(recentsModel); break;
+	// 	// 	default: mutableModel = JSON.parse(pinnedModel); break;
+	// 	// }
+	// 	// appList.model = mutableModel;
+	// }
 
 
 	// ListModel {
@@ -566,6 +566,7 @@ Window {
 					animDelay: index * 5
 					appName: modelData.name
 					iconPath: modelData.icon
+					filePath: modelData.path
 				}
 
 				layer.enabled: true

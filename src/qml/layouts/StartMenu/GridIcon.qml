@@ -138,6 +138,8 @@ Button {
 			width: 50
 			height: 50
 			scale: 0
+			asynchronous: true
+			cache: false
 			anchors.horizontalCenter: parent.horizontalCenter
 
 

@@ -180,6 +180,10 @@ import com.azusystem.azura
 
 // Real Backend
 Item {
+	PinnedList {
+		id: rustBackend
+	}
+
 	property var pinnedModel: rustBackend.fetchPinnedJSON()
 	property var allAppsModel: rustBackend.fetchAllAppsJSON()
 	property var recentsModel: rustBackend.fetchRecentsJSON()
@@ -202,21 +206,24 @@ Item {
 	}
 
 	function launchEntry(path) {
-		console.log("Laucnh Entry: " + path)
+		console.log("Launch Entry: " + path)
+		rustBackend.launchEntry(path)
+		window.modalOpen = false;
+		frontend.visible = false;
 	}
 
-	function pinLauncherEntry(json) {
-		console.log(json)
+	// function pinLauncherEntry(json) {
+	// 	console.log(json)
 
-		let pinnedJSON = JSON.parse(pinnedModel)
-		pinnedJSON.push(JSON.parse(json))
+	// 	let pinnedJSON = JSON.parse(pinnedModel)
+	// 	pinnedJSON.push(JSON.parse(json))
 
-		pinnedModel = JSON.stringify(pinnedJSON, null, 4);
+	// 	pinnedModel = JSON.stringify(pinnedJSON, null, 4);
 
-		rustBackend.writePinnedModel(pinnedModel)
+	// 	rustBackend.writePinnedModel(pinnedModel)
 
-		// frontend.refreshModels()
-		// console.log(pinnedModel)		
-	}
+	// 	// frontend.refreshModels()
+	// 	// console.log(pinnedModel)		
+	// }
 
 }
