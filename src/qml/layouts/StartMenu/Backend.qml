@@ -181,8 +181,8 @@ import com.azusystem.azura
 // Real Backend
 Item {
 	property var pinnedModel: rustBackend.fetchPinnedJSON()
-	property var allAppsModel: rustBackend.fetchAllAppsModel()
-	property var recentsModel: rustBackend.fetchRecentsModel()
+	property var allAppsModel: rustBackend.fetchAllAppsJSON()
+	property var recentsModel: rustBackend.fetchRecentsJSON()
 
 	onPinnedModelChanged: {
 		console.log("changed: " + pinnedModel)
