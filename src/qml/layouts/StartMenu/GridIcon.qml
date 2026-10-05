@@ -12,14 +12,14 @@ Button {
 
 	id: gridIconBtn
 
-	onClicked: { backend.launchEntry(filePath) }
+	TapHandler {
+		acceptedButtons: Qt.LeftButton
+		onTapped: { backend.launchEntry(filePath) }
+	}
 
 	TapHandler {
 		acceptedButtons: Qt.RightButton
-
-		onTapped: {
-			contextMenu.popup()
-		}
+		onTapped: { contextMenu.popup() }
 	}
 
 	Menu {
@@ -84,7 +84,7 @@ Button {
 			text: "Pin to Launcher"
 			onTriggered: {
 				backend.pinLauncherEntry('{"name": "' + appName + '", "icon": "' + iconPath + '", "file": "' + filePath + '"}')
-				frontend.refreshModels()
+				// frontend.refreshModels()
 			}
 		}
 
