@@ -20,7 +20,6 @@ Window {
     property date currentTime: new Date()
     property bool allowAutoHide: true
     property bool autoHidden: false // the visibility of the dock itself
-    property bool modalOpen: false
 
     Behavior on y {
         NumberAnimation {
@@ -50,7 +49,7 @@ Window {
         running: allowAutoHide
         repeat: false
 
-        onTriggered: { if (!autoHideMouseArea.containsMouse && !modalOpen) { autoHidden = true } }
+        onTriggered: { if (!autoHideMouseArea.containsMouse && !startMenu.active) { autoHidden = true } }
     }
 
     Rectangle {
@@ -94,7 +93,6 @@ Window {
 
 
                     onClicked: {
-                        modalOpen = !modalOpen
                         startMenu.active = !startMenu.active;
                     }
 

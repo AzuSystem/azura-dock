@@ -180,6 +180,7 @@ Window {
 				leftPadding: 35
 				placeholderText: "Search"
 				placeholderTextColor: "#aaffffff"
+				focus: true
 
 				background: Rectangle {
 					color: "#0Fffffff"

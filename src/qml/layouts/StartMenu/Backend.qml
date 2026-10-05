@@ -161,6 +161,7 @@ import com.azusystem.azura
 
 // 	function launchEntry(path) {
 // 		console.log("Laucnh Entry: " + path)
+// 		frontend.visible = false;
 // 	}
 
 // 	function pinLauncherEntry(json) {
@@ -208,7 +209,6 @@ Item {
 	function launchEntry(path) {
 		console.log("Launch Entry: " + path)
 		rustBackend.launchEntry(path)
-		window.modalOpen = false;
 		frontend.visible = false;
 	}
 
