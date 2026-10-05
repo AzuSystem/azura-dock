@@ -12,8 +12,6 @@ Button {
 
 	id: gridIconBtn
 
-	Backend { id: backend }
-
 	onClicked: { backend.launchEntry(filePath) }
 
 	TapHandler {

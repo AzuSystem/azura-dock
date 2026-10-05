@@ -8,37 +8,37 @@ import com.azusystem.azura
 // 			{
 // 				"name": "Arcaea",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Higurashi no naku koro ni",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Arcaea",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Arcaea",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Arcaea",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Arcaea",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Arcaea",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			}
 // 		]'
 
@@ -47,57 +47,57 @@ import com.azusystem.azura
 // 			{
 // 				"name": "Phigros",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Katawa Shoujo",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "yes",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Arcaea",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "JA Sensei",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Takoboto Dictionary",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Jisho",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Anki",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "yomu yomu",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "NicoDouga",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Higurashi Again",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			}
 
 // 		]'
@@ -107,37 +107,37 @@ import com.azusystem.azura
 // 			{
 // 				"name": "JA Sensei",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Takoboto Dictionary",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Jisho",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Anki",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "yomu yomu",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "NicoDouga",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			},
 // 			{
 // 				"name": "Higurashi Again",
 // 				"icon": "../../assets/icons/dolphin.svg",
-// 				"file": ""
+// 				"path": ""
 // 			}
 
 // 		]'
