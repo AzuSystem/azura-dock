@@ -83,7 +83,7 @@ Button {
 		Action {
 			text: "Pin to Launcher"
 			onTriggered: {
-				backend.pinLauncherEntry('{"name": "' + appName + '", "icon": "' + iconPath + '", "file": "' + filePath + '"}')
+				backend.pinLauncherEntry('{"name": "' + appName + '", "icon": "' + iconPath + '", "path": "' + filePath + '"}')
 				frontend.refreshModels()
 			}
 		}

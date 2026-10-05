@@ -212,18 +212,18 @@ Item {
 		frontend.visible = false;
 	}
 
-	// function pinLauncherEntry(json) {
-	// 	console.log(json)
+	function pinLauncherEntry(json) {
+		console.log(json)
 
-	// 	let pinnedJSON = JSON.parse(pinnedModel)
-	// 	pinnedJSON.push(JSON.parse(json))
+		let pinnedJSON = JSON.parse(pinnedModel)
+		pinnedJSON.push(JSON.parse(json))
 
-	// 	pinnedModel = JSON.stringify(pinnedJSON, null, 4);
+		pinnedModel = JSON.stringify(pinnedJSON, null, 4);
 
-	// 	rustBackend.writePinnedModel(pinnedModel)
+		rustBackend.writePinnedModel(pinnedModel)
 
-	// 	// frontend.refreshModels()
-	// 	// console.log(pinnedModel)		
-	// }
+		// frontend.refreshModels()
+		// console.log(pinnedModel)		
+	}
 
 }

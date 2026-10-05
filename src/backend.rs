@@ -61,37 +61,64 @@ struct AppIcon {
 }
 
 impl qobject::PinnedList {
-    pub fn fetch_pinned_json(&self) -> QString {
-        let mut icons: Vec<AppIcon> = Vec::new();
+    // i think im jus dumb actually
+    // pub fn fetch_pinned_json(&self) -> QString {
+    //     let mut icons: Vec<AppIcon> = Vec::new();
 
-        if let Some(config_dir) = BaseDirs::new().map(|dir| dir.config_dir().to_path_buf()) {
-            let startmenu_dir = config_dir.join("AzuraDE/StartMenu");
-            let pinned_dir = Path::new(&startmenu_dir);
+    //     if let Some(config_dir) = BaseDirs::new().map(|dir| dir.config_dir().to_path_buf()) {
+    //         let startmenu_dir = config_dir.join("AzuraDE/StartMenu");
+    //         let pinned_dir = Path::new(&startmenu_dir);
             
-                for entry in fs::read_dir(pinned_dir).unwrap() {
-                    let entry = entry.unwrap();
-                    if entry.path().extension().is_some_and(|ext|ext == "desktop") {
-                        let file = DesktopEntry::from_path(entry.path(), None::<&[&str]>).unwrap();
+    //             for entry in fs::read_dir(pinned_dir).unwrap() {
+    //                 let entry = entry.unwrap();
+    //                 if entry.path().extension().is_some_and(|ext|ext == "desktop") {
+    //                     let file = DesktopEntry::from_path(entry.path(), None::<&[&str]>).unwrap();
 
-                        let file_name = file.name(&["en"]).unwrap_or_default().to_string();
-                        let file_icon = freedesktop_icons::lookup(file.icon().unwrap_or_default().to_string().as_str())
-                            .with_size(64)
-                            .find()
-                            .map(|path|path.to_string_lossy().into_owned())
-                            .unwrap_or_else(|| "qrc:/assets/unknown.svg".to_string());
+    //                     let file_name = file.name(&["en"]).unwrap_or_default().to_string();
+    //                     let file_icon = freedesktop_icons::lookup(file.icon().unwrap_or_default().to_string().as_str())
+    //                         .with_size(64)
+    //                         .find()
+    //                         .map(|path|path.to_string_lossy().into_owned())
+    //                         .unwrap_or_else(|| "qrc:/assets/unknown.svg".to_string());
 
-                        let app = AppIcon {
-                            name: file_name,
-                            icon: "file://".to_string() + &file_icon,
-                            path: entry.path().to_string_lossy().to_string(),
-                        };
+    //                     let app = AppIcon {
+    //                         name: file_name,
+    //                         icon: "file://".to_string() + &file_icon,
+    //                         path: entry.path().to_string_lossy().to_string(),
+    //                     };
 
-                        icons.push(app);
-                    }
-                }
-        }
+    //                     icons.push(app);
+    //                 }
+    //             }
+    //     }
 
-        QString::from(serde_json::to_string(&icons).unwrap())
+    //     QString::from(serde_json::to_string(&icons).unwrap())
+    // }
+
+    // pub fn fetch_pinned_json(&self) -> QString {
+    //     let mut pinned_json;
+    //     if let Some(config_dir) = BaseDirs::new().map(|dir| dir.config_dir().to_path_buf()) {
+    //         let startmenu_dir = config_dir.join("AzuraDE/StartMenu");
+    //         let pinned_dir = Path::new(&startmenu_dir);     
+
+
+    //         pinned_json = fs::read_to_string(pinned_dir.join("pinned.json"));
+    //     }
+
+    //     QString::from(&pinned_json.unwrap())
+        
+    // }
+
+    pub fn fetch_pinned_json(&self) -> QString {
+        // let mut icons: Vec<AppIcon> = Vec::new();
+        let Some(config_dir) = BaseDirs::new().map(|dir| dir.config_dir().to_path_buf()) else {
+            return QString::default();
+        };
+
+        let pinned_path = config_dir.join("AzuraDE/StartMenu/pinned.json");
+        let pinned_json = fs::read_to_string(pinned_path).unwrap_or_default();
+
+        QString::from(pinned_json.as_str())
     }
 
     pub fn fetch_all_apps_json(&self) -> QString {
